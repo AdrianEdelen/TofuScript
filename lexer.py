@@ -1,19 +1,9 @@
 import re
-TOKEN_TYPES = {
-    'KEYWORD': 'KEYWORD', #language keywords
-    'IDENTIFIER': 'IDENTIFIER', #variable names
-    'NUMBER': 'NUMBER', #numbers
-    'OPERATOR': 'OPERATOR', #arithmetic
-    'PAREN': 'PAREN', #Paranthese
-    'BRACE': 'BRACE', #curly brace
-    'SEMICOLON': 'SEMICOLON',
-    'ASSIGN': 'ASSIGN', # assignment operator
-    'WHITESPACE': 'whitespace',
-    'UNKNOWN': 'UNKNOWN' #used for unknown/error states
-}
 
-#language keywords
-KEYWORDS = ['int', 'if', 'while', 'return']
+from token_types import TOKEN_TYPES
+KEYWORDS = ['if', 'while', 'return', 'print']
+TYPES = ['int']
+
 
 class Token:
     def __init__(self, token_type, value, filename, line, column):
@@ -76,6 +66,8 @@ class Lexer:
         value = self.code[start:self.position]
         if value in KEYWORDS:
             return Token(TOKEN_TYPES['KEYWORD'], value, '', 0, 0)
+        elif value in TYPES:
+            return Token(TOKEN_TYPES['TYPE'], value, '', 0, 0)
         else:
             return Token(TOKEN_TYPES['IDENTIFIER'], value, '', 0, 0)
     
