@@ -53,6 +53,10 @@ class Lexer:
                 self.tokens.append(self.consume_unknown())
         return self.tokens
 
+    # def consume_comment(self):
+    #     start = self.position
+    #     while self.position < len(self.code) and self.code[self.position] == ''
+
     def consume_number(self):
         start = self.position
         while self.position < len(self.code) and self.code[self.position].isdigit():
